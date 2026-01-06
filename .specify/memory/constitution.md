@@ -1,55 +1,73 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT
+Version change: 1.0.0 → 1.1.0
+Added sections: Testable code quality standards, specification compliance with Task ID tracking, review process, scope enforcement
+Modified principles: Simplicity and Clarity (made testable), Development Workflow (added specific requirements)
+Removed sections: Vague language about "clean code principles"
+Templates requiring updates: ✅ .specify/templates/plan-template.md, ✅ .specify/templates/spec-template.md, ✅ .specify/templates/tasks-template.md
+Follow-up TODOs: None
+-->
+
+# Todo In-Memory Python Console Application Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Specification First
+All development must follow the sequence: Specify → Plan → Tasks → Implement. No code implementation is allowed without a prior specification document that clearly defines the requirements and acceptance criteria.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Specification Compliance with Task Tracking
+Every code change must reference exactly one Task ID from speckit.tasks. Each implemented feature must map to one or more approved tasks in the task list.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Source of Truth Enforcement
+No implementation without approved speckit.specify, speckit.plan, and speckit.tasks. All development work must be traceable to these three artifacts.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Traceability
+Every implemented feature must be traceable to an explicit requirement in the specification. Each function, module, and feature must have a documented link to the requirement it satisfies.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Testable Code Quality & Structure
+Code must meet these measurable standards:
+- Functions must be ≤ 30 lines
+- Each function has a single responsibility
+- Meaningful names for variables and functions (no single-letter names except loop indices `i`, `j`, `k`)
+- No function mixes CLI input/output with business logic
+- Clear separation between business logic and user interface logic
 
-### [PRINCIPLE_6_NAME]
+### No Assumptions
+Behavior must be explicitly defined in specifications; no implicit features or functionality are allowed. If it's not in the spec, it must not be implemented.
 
+### Scope Enforcement
+Any feature not listed in the Basic Level scope must be rejected or deferred without partial implementation. Focus on completing defined features before adding new ones.
 
-[PRINCIPLE__DESCRIPTION]
+### In-Memory Data Management
+The application must manage all data in memory only, with no persistence to files, databases, or cloud storage. This ensures simplicity and adherence to the basic MVP requirements.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Console-First Interface
+The application must be a console-based application with text input/output interface. No graphical or web-based interfaces are allowed as per the basic scope requirements.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Error Handling & User Experience
+All user-facing errors must be handled gracefully with a clear console message; unhandled exceptions are not permitted during normal usage. Invalid task IDs handled without crashing and with informative error messages.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Technical Constraints
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Language: Python 3.13+ required
+- Environment management: UV package manager must be used
+- Data storage: In-memory only (no persistence)
+- Project structure: /src for source code, /specs_history for specifications
+
+## Development Workflow
+
+- Follow Spec-Driven Development (SDD) methodology
+- Specs reviewed before implementation
+- Tasks approved before coding begins
+- All functionality must be traceable to documented requirements
+- Manual console-based verification for each feature
+- Focus on correctness, clarity, and traceability rather than exhaustive testing
+- Modular Python project structure required with separation of concerns
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- Constitution supersedes all other development practices
+- All changes must comply with specified principles
+- Amendments to the constitution require explicit documentation and approval
+- All implementation must strictly adhere to the defined scope
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.1.0 | **Ratified**: 2026-01-06 | **Last Amended**: 2026-01-06

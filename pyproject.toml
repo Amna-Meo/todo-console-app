@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools"
+
+[project]
+name = "todo-console-app"
+version = "0.1.0"
+description = "A command-line todo application"
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [
+    {name = "Todo App Developer"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+]
+
+[project.scripts]
+todo = "todo_app.cli.todo_cli:main"
+
+[project.urls]
+"Homepage" = "https://github.com/username/todo-console-app"
+"Bug Reports" = "https://github.com/username/todo-console-app/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]

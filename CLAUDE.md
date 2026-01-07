@@ -208,3 +208,10 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Python 3.13+ (as required by constitution and specification) + argparse (for CLI parsing), json (for data persistence), os/pathlib (for file operations) (001-todo-app)
+- JSON file-based persistence (to satisfy spec requirement for data persistence between sessions while keeping data in memory during runtime) (001-todo-app)
+
+## Recent Changes
+- 001-todo-app: Added Python 3.13+ (as required by constitution and specification) + argparse (for CLI parsing), json (for data persistence), os/pathlib (for file operations)
